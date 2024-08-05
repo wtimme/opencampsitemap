@@ -12,7 +12,7 @@ const mangroveHomepageURL = 'https://mangrove.reviews/';
 const uncertainty = 50;
 
 function loadReviews(featureData) {
-  if (!("name" in featureData.properties)) {
+  if (!('name' in featureData.properties)) {
     // Only camping places with names can have reviews.
     hideReviewContainer();
     return;
@@ -21,7 +21,7 @@ function loadReviews(featureData) {
   showReviewContainer();
   showLoading(featureData);
 
-  const coordinate = `${featureData.geometry.coordinates[1]},${featureData.geometry.coordinates[0]}`
+  const coordinate = `${featureData.geometry.coordinates[1]},${featureData.geometry.coordinates[0]}`;
   const sub = encodeURIComponent(`geo:${coordinate}?q=${coordinate}&u=${uncertainty}`);
 
   const q = encodeURIComponent(featureData.properties.name);
@@ -52,7 +52,9 @@ function showReviewContainer() {
 function showLoading(featureData) {
   const addReviewButton = htmlForAddReviewButton(featureData);
 
-  document.getElementById(containerId).innerHTML = `${htmlForHeader()}${addReviewButton}<p class="loading_or_no_reviews">${l10n.loading_reviews}</p>`;
+  document.getElementById(
+    containerId,
+  ).innerHTML = `${htmlForHeader()}${addReviewButton}<p class="loading_or_no_reviews">${l10n.loading_reviews}</p>`;
 }
 
 function htmlForHeader() {

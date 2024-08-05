@@ -9,4 +9,3 @@ Then point your Browser to http://localhost:54445/
 
 This will use the database from https://opencampingmap.org while running the
 client-code on your own machine.
-

@@ -7,36 +7,28 @@ Just use the instance at https://opencampingmap.org/ instead.
 If you want to install this stuff on your own machine follow these (likely
 incomplete) instructions for Debian 11.
 
-* Install osmpoidb from https://github.com/giggls/osmpoidb
+- Install osmpoidb from https://github.com/giggls/osmpoidb
 
-* Install required packages
-``
-apt install libapache2-mod-wsgi-py3 podman inkscape xmlstarlet wget unzip apache2
-``
+- Install required packages
+  `apt install libapache2-mod-wsgi-py3 podman inkscape xmlstarlet wget unzip apache2`
 
-* Clone repository into /opt/opencampingmap
-``
-git clone https://github.com/giggls/opencampsitemap /opt/opencampingmap
-``
+- Clone repository into /opt/opencampingmap
+  `git clone https://github.com/giggls/opencampsitemap /opt/opencampingmap`
 
-* Call make
-``
-cd /opt/opencampingmap
-make
-``
+- Call make
+  `cd /opt/opencampingmap
+make`
 
-* Enable and run podman container for nodejs part of the code
-``
-cp campmap-srv.service /etc/systemd/system/campmap-srv.service
+- Enable and run podman container for nodejs part of the code
+  `cp campmap-srv.service /etc/systemd/system/campmap-srv.service
 systemctl daemon-reload
 systemctl enable campmap-srv.service
-systemctl start campmap-srv.service
-``
+systemctl start campmap-srv.service`
 
-* Configure Apache2 vhost
+- Configure Apache2 vhost
 
 ``
-	RewriteEngine on
+RewriteEngine on
 
         WSGIApplicationGroup %{GLOBAL}
         WSGIScriptAlias /sitemap /opt/osm2pgsql/osmpoidb/sitemap.cgi
@@ -59,5 +51,6 @@ systemctl start campmap-srv.service
                 ProxyPass !
                 Require all granted
         </Location>
-	</VirtualHost>
+    </VirtualHost>
+
 ``
